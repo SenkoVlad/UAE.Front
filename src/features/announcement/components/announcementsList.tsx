@@ -1,6 +1,5 @@
 import { useContext } from "react";
 
-import '../../../styles/announcements/announcement_form.scss';
 import { AnnouncementsContext } from "../announcement.context";
 import { AnnouncementsState } from "../announcement.models";
 

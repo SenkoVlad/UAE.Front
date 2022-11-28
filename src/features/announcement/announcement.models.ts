@@ -1,8 +1,9 @@
 import { User } from "../auth/auth.models";
+import { Category } from "../filters/filters.models";
 
-export interface Category {
-    id: number;
+export interface CreateAnnouncementRequest {
     name: string;
+    category: string;
 }
 
 export interface Announcement {

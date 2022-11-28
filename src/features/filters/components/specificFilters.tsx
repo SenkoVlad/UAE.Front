@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 
-import '../../../styles/announcements/announcement_form.scss';
 import { FiltersContext } from "../filters.context";
 import { FiltersState } from "../filters.models";
 

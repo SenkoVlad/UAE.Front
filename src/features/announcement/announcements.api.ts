@@ -1,5 +1,5 @@
 import { apiUrl, basicRequestSettings, } from '../../utils/consts';
-import { Announcement } from './announcement.models';
+import { Announcement, CreateAnnouncementRequest } from './announcement.models';
 
 export const announcementApi = {
     create,
@@ -7,10 +7,10 @@ export const announcementApi = {
     getPaged,
 };
 
-async function create(name: string): Promise<Announcement> {
+async function create(data: CreateAnnouncementRequest): Promise<Announcement> {
     const requestOptions = {
         method: 'POST',
-        body: JSON.stringify({ name }),
+        body: JSON.stringify(data),
         ...basicRequestSettings
     };
 
