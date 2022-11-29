@@ -5,7 +5,7 @@ import {
 import UserHome from './home/userHome';
 import UserAnnouncements from './announcements/userAnnouncements';
 
-export function Admin() {
+export function Profile() {
     return <Routes>
         <Route path="/" element={<UserHome />}></Route>
         <Route path="announcements" element={<UserAnnouncements />}></Route>

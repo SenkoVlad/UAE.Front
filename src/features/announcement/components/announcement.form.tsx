@@ -1,26 +1,56 @@
+import { InputText } from "primereact/inputtext";
+import { Button } from "primereact/button";
 import { useState } from "react";
+import { CategoryPickerInput } from "../../filters/globalFilters/components/categoryPicker";
 
-import '../../../styles/announcements/announcement_form.scss';
+import './styles/announcement.form.scss';
+import { announcementApi } from "../announcements.api";
+import { Category } from "../../filters/filters.models";
 
 interface OwnProps {
-    label: string;
-    buttonLabel: string;
-    onSubmitCallback: (name: string) => void;
 }
 
 export const AnnouncementForm: React.FC<OwnProps> = ({
-    label,
-    buttonLabel,
-    onSubmitCallback
 }) => {
 
-    const [value, setValue] = useState("");
+    const [name, setName] = useState("");
+    const [category, setCategory] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+
+    const validate = () => {
+
+    }
+
+    const onSubmit = async () => {
+        setIsLoading(true)
+
+        try {
+            const data = await announcementApi.create({ name, category });
+            console.log(data);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const onCategoryPicked = (category?: string) => {
+        console.log(name, category)
+        category && setCategory(category);
+    };
 
     return (
         <>
-            <label>{label}</label>
-            <input className="service-form" onChange={(e) => setValue(e.target.value)} />
-            <button onClick={(e) => onSubmitCallback(value)}>{buttonLabel}</button>
+            <div id="announcement-form">
+                <span className="p-float-label">
+                    <InputText id="in" value={name} onChange={(e) => setName(e.target.value)} />
+                    <label htmlFor="in">Name</label>
+                </span>
+                <span className="p-float-label">
+                    <CategoryPickerInput onCategoryPicked={onCategoryPicked} />
+                    <label htmlFor="category-picker">Category</label>
+                </span>
+
+                <Button label="Submit" loading={isLoading} loadingIcon="pi pi-spin pi-sun" onClick={onSubmit} />
+            </div>
         </>
     );
 }
