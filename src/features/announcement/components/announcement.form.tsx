@@ -33,7 +33,7 @@ export const AnnouncementForm: React.FC<OwnProps> = ({
     };
 
     const onCategoryPicked = (category?: string) => {
-        console.log(name, category)w
+        console.log(name, category)
         category && setCategory(category);
     };
 
